@@ -1,16 +1,34 @@
 <script>
-    import Button from "./lib/Button.svelte";
-    import IoIosArrowDropdown from 'svelte-icons/io/IoIosArrowDropdown.svelte'
+    import TodoList from "./lib/TodoList.svelte";
+    import {v4 as uuid} from "uuid";
 
+
+    let todos = [
+        {
+            id: uuid(),
+            title: 'Todo1',
+            completed: false
+        }, {
+            id: uuid(),
+            title: 'Todo1',
+            completed: false
+        }, {
+            id: uuid(),
+            title: 'Todo1',
+            completed: false
+        }, {
+            id: uuid(),
+            title: 'Todo1',
+            completed: false
+        }
+    ]
+
+    $: console.log(todos)
 </script>
 
-<Button on:click|once={(event) => {
-    alert(true)
-}
-} let:x >
-    <div style:width="20px">
-        <IoIosArrowDropdown slot="left"></IoIosArrowDropdown>
-    </div>
-    Button Test {x}</Button>
+<h2>{todos.length}</h2>
+<TodoList bind:todos></TodoList>
+<button on:click={() => {todos = [];}}>Update Todos</button>
+
 <style>
 </style>
